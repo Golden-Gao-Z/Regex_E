@@ -20,7 +20,6 @@ namespace Regex_E
             var form = new SearchAndReplace();
             form.ShowIcon = false;
             form.TopMost = true;
-            form.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             form.Show();
             //var ggg = Globals.ThisAddIn.Application;
             //var sheet = ggg.ActiveSheet;

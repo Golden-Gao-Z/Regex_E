@@ -36,8 +36,8 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.groupMain = this.Factory.CreateRibbonGroup();
-            this.btnOpenDialog = this.Factory.CreateRibbonButton();
             this.btnGroupMain = this.Factory.CreateRibbonButtonGroup();
+            this.btnOpenDialog = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.groupMain.SuspendLayout();
             this.btnGroupMain.SuspendLayout();
@@ -55,16 +55,16 @@
             this.groupMain.Label = "main";
             this.groupMain.Name = "groupMain";
             // 
+            // btnGroupMain
+            // 
+            this.btnGroupMain.Items.Add(this.btnOpenDialog);
+            this.btnGroupMain.Name = "btnGroupMain";
+            // 
             // btnOpenDialog
             // 
             this.btnOpenDialog.Label = "more";
             this.btnOpenDialog.Name = "btnOpenDialog";
             this.btnOpenDialog.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnMain_Click);
-            // 
-            // btnGroupMain
-            // 
-            this.btnGroupMain.Items.Add(this.btnOpenDialog);
-            this.btnGroupMain.Name = "btnGroupMain";
             // 
             // Regex_Tab
             // 

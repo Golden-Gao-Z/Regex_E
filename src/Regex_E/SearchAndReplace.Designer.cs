@@ -101,7 +101,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 30;
-            this.dataGridView1.Size = new System.Drawing.Size(988, 162);
+            this.dataGridView1.Size = new System.Drawing.Size(988, 0);
             this.dataGridView1.TabIndex = 0;
             // 
             // Column1
@@ -281,26 +281,26 @@
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label7.BackColor = System.Drawing.Color.White;
             this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label7.Location = new System.Drawing.Point(625, 74);
+            this.label7.Location = new System.Drawing.Point(616, 69);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(109, 20);
+            this.label7.Size = new System.Drawing.Size(120, 30);
             this.label7.TabIndex = 8;
             this.label7.Text = "格式/Format";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label6.BackColor = System.Drawing.Color.White;
             this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label6.Location = new System.Drawing.Point(625, 28);
+            this.label6.Location = new System.Drawing.Point(616, 23);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 20);
+            this.label6.Size = new System.Drawing.Size(120, 30);
             this.label6.TabIndex = 7;
             this.label6.Text = "格式/Format";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // splitContainer2
             // 
@@ -449,11 +449,11 @@
             this.tabPage1.Text = "查找/Search";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnReplaceAll
             // 
             this.btnReplaceAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReplaceAll.Location = new System.Drawing.Point(10, 373);
-            this.btnReplaceAll.Name = "button5";
+            this.btnReplaceAll.Name = "btnReplaceAll";
             this.btnReplaceAll.Size = new System.Drawing.Size(130, 45);
             this.btnReplaceAll.TabIndex = 2;
             this.btnReplaceAll.Text = "全部替换";
@@ -505,7 +505,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(993, 601);
+            this.ClientSize = new System.Drawing.Size(993, 434);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
@@ -516,7 +516,7 @@
             this.MinimumSize = new System.Drawing.Size(1015, 490);
             this.Name = "SearchAndReplace";
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Search / Replace";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);

@@ -35,6 +35,7 @@ namespace Regex_E
             if (this.textBox1.Text.Length == 0)
             {
                 Debug.WriteLine("null search input.");
+                MessageBox.Show("oops","type what you want to search.",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 return;
             }
 
