@@ -22,20 +22,11 @@ namespace Regex_E
 
         private void button7_Click(object sender, EventArgs e)
         {
-
-        }
-        private void UpdateResultGrid()
-        {
-            //clear old data.
-            //add new results.
-        }
-
-        private void BtnReplaceAll_Click(object sender, EventArgs e)
-        {
+            this.cellsCache.Clear();
             if (this.textBox1.Text.Length == 0)
             {
                 Debug.WriteLine("null search input.");
-                MessageBox.Show("oops","type what you want to search.",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("oops", "type what you want to search.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -45,25 +36,90 @@ namespace Regex_E
             var rangeRowCount = sheetRange.Rows.Count;
             var rangeColCount = sheetRange.Columns.Count;
 
+            //
             for (int row = 1; row <= rangeRowCount; row++)
             {
                 for (int col = 1; col <= rangeColCount; col++)
                 {
                     if (sheetRange.Cells[row, col].Value is string cellString)
                     {
-                        var newString = string.Empty;
-                        if (this.checkBoxRegexSwitchOn.Checked)
+                        var regexOption = RegexOptions.None;
+                        var stringCompare = StringComparison.CurrentCulture;
+                        if (this.switchIgnoreCase)
                         {
-                            sheetRange.Cells[row, col] = Regex.Replace(cellString, search, replace);
+                            regexOption = RegexOptions.IgnoreCase;
+                            stringCompare = StringComparison.CurrentCultureIgnoreCase;
                         }
-                        else
-                        {
-                            sheetRange.Cells[row, col] = cellString.Replace(search, replace);
-                        }
+                        // match indexes should be cached here.
+                        if (this.switchRegex && Regex.IsMatch(cellString, search, regexOption))
+                            this.cellsCache.Add((row, col, cellString, (int)regexOption));
+                        else if (cellString.IndexOf(search, stringCompare) != -1)
+                            this.cellsCache.Add((row, col, cellString, (int)stringCompare));
                     }
 
                 }
             }
+
+
+            this.dataGridView1.Rows.Clear();
+            foreach (var (row, col, val, option) in this.cellsCache)
+                dataGridView1.Rows.Add("", "", "", $"({row}, {col})", val, "");
+            //
+            return;
+        }
+        private void UpdateResultGrid()
+        {
+            //clear old data.
+            //add new results.
+        }
+
+        private bool switchRegex = default;
+        private bool switchIgnoreCase = default;
+
+        private List<(int row, int col, string val, int option)> cellsCache = new List<(int row, int col, string val, int option)>();
+        private void BtnReplaceAll_Click(object sender, EventArgs e)
+        {
+            var search = this.textBox1.Text;
+            var replace = this.textBox2.Text;
+            Range sheetRange = Globals.ThisAddIn.Application.ActiveSheet.UsedRange;
+
+            foreach (var (row, col, val, option) in this.cellsCache)
+            {
+                if (this.switchRegex)
+                    sheetRange.Cells[row, col] = Regex.Replace(val, search, replace, (RegexOptions)option);
+                else
+                    sheetRange.Cells[row, col] = ReplaceAndTrackOccurrences(val, search, replace, (StringComparison)option);
+            }
+        }
+        static string ReplaceAndTrackOccurrences(string input, string search, string replacement, StringComparison compare)
+        {
+            int index = input.IndexOf(search, compare);
+
+            while (index != -1)
+            {
+                input = input.Substring(0, index) + replacement + input.Substring(index + search.Length);
+
+                index = input.IndexOf(search, index + replacement.Length, compare);
+            }
+
+            return input;
+        }
+
+        private void checkBoxIgnoreCaseSwitchOn_CheckedChanged(object sender, EventArgs e)
+        {
+            this.switchIgnoreCase = (sender as System.Windows.Forms.CheckBox).Checked;
+        }
+
+        private void checkBoxRegexSwitchOn_CheckedChanged(object sender, EventArgs e)
+        {
+            this.switchRegex = (sender as System.Windows.Forms.CheckBox).Checked;
         }
     }
 }
+
+
+
+
+
+
+

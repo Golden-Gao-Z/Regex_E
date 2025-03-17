@@ -247,6 +247,7 @@
             this.checkBoxRegexSwitchOn.TabIndex = 12;
             this.checkBoxRegexSwitchOn.Text = "正则表达式";
             this.checkBoxRegexSwitchOn.UseVisualStyleBackColor = true;
+            this.checkBoxRegexSwitchOn.CheckedChanged += new System.EventHandler(this.checkBoxRegexSwitchOn_CheckedChanged);
             // 
             // checkBox3
             // 
@@ -277,6 +278,7 @@
             this.checkBoxIgnoreCaseSwitchOn.TabIndex = 9;
             this.checkBoxIgnoreCaseSwitchOn.Text = "区分大小写";
             this.checkBoxIgnoreCaseSwitchOn.UseVisualStyleBackColor = true;
+            this.checkBoxIgnoreCaseSwitchOn.CheckedChanged += new System.EventHandler(this.checkBoxIgnoreCaseSwitchOn_CheckedChanged);
             // 
             // label7
             // 
