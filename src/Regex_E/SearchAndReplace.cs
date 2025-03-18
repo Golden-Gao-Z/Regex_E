@@ -15,6 +15,8 @@ namespace Regex_E
 {
     public partial class SearchAndReplace : Form
     {
+        private int DefaultWindowHeight = 0;
+        private int ExtendWindowHeight = 750;
         public SearchAndReplace()
         {
             InitializeComponent();
@@ -62,10 +64,12 @@ namespace Regex_E
 
 
             this.dataGridView1.Rows.Clear();
+            this.Size = new Size(this.Size.Width,this.DefaultWindowHeight);
+            if (this.cellsCache.Count == 0) return;
+
+            this.Size = new Size(this.Size.Width, this.ExtendWindowHeight);
             foreach (var (row, col, val, option) in this.cellsCache)
                 dataGridView1.Rows.Add("", "", "", $"({row}, {col})", val, "");
-            //
-            return;
         }
         private void UpdateResultGrid()
         {
@@ -113,6 +117,11 @@ namespace Regex_E
         private void checkBoxRegexSwitchOn_CheckedChanged(object sender, EventArgs e)
         {
             this.switchRegex = (sender as System.Windows.Forms.CheckBox).Checked;
+        }
+
+        private void SearchAndReplace_Load(object sender, EventArgs e)
+        {
+            this.DefaultWindowHeight = this.Size.Height;
         }
     }
 }
