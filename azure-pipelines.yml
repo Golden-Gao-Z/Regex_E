@@ -3,6 +3,12 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
+parameters:
+- name: specificBuildNum
+  displayName: 'Specify the build number:'
+  type: string
+  default: ''
+
 trigger:
 - master
 
@@ -14,8 +20,9 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  BUILD_NUMBER: ${{ parameters.specificBuildNum }}
 
-name: Regex_E-$(Date:yyyyMMdd)_$(MajorVersion).$(BUILD_NUMBER)
+name: $(Date:yyyyMMdd)_$(MajorVersion).$(BUILD_NUMBER)
 steps:
 - task: NuGetToolInstaller@1
 
