@@ -14,6 +14,15 @@ using System.Windows.Forms;
 
 namespace Regex_E
 {
+    /// <summary>
+    /// 1、可字符串方式和正则方式查找。
+    /// 2、可忽略大小写。
+    /// 3、可查找并替换。
+    /// 4、查找结果可在单元格内定位显示，显示下一个。
+    /// 5、所有查找结果信息可在扩展datagrid中显示，且被查找内容以高亮标记。
+    /// 6、可一键替换所有查找结果。
+    /// 7、可选择搜索范围是当前单元格还是整个工作表。
+    /// </summary>
     public partial class SearchAndReplace : Form
     {
         private int DefaultWindowHeight = 0;
