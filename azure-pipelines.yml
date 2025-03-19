@@ -23,6 +23,7 @@ variables:
   BUILD_NUMBER: ${{ parameters.specificBuildNum }}
 
 name: $(Date:yyyyMMdd)_$(MajorVersion).$(BUILD_NUMBER)
+
 steps:
 - task: NuGetToolInstaller@1
 
