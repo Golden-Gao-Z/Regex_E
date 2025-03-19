@@ -10,10 +10,12 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
+  MajorVersion: 99.0.0
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
+name: Regex_E-$(Date:yyyyMMdd)_$(MajorVersion).$(BUILD_NUMBER)
 steps:
 - task: NuGetToolInstaller@1
 
