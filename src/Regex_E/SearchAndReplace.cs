@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -64,7 +65,7 @@ namespace Regex_E
 
 
             this.dataGridView1.Rows.Clear();
-            this.Size = new Size(this.Size.Width,this.DefaultWindowHeight);
+            this.Size = new Size(this.Size.Width, this.DefaultWindowHeight);
             if (this.cellsCache.Count == 0) return;
 
             this.Size = new Size(this.Size.Width, this.ExtendWindowHeight);
@@ -118,10 +119,13 @@ namespace Regex_E
         {
             this.switchRegex = (sender as System.Windows.Forms.CheckBox).Checked;
         }
-
+        private string TitleText = string.Empty;
         private void SearchAndReplace_Load(object sender, EventArgs e)
         {
             this.DefaultWindowHeight = this.Size.Height;
+            this.TitleText = this.Text;
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            this.Text = $"{this.TitleText} v{version.Major}.{version.Minor}.{version.Build}";
         }
     }
 }
